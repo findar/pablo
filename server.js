@@ -24,8 +24,8 @@ function main() {
 
     app.post('/:token', function(request, response) {
      // Handle the post for this route
-        console.log(request.body);
-        console.log(request.params.token);
+
+
         response.end();
     });
 
