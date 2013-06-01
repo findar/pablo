@@ -24,8 +24,55 @@ function main() {
 
     app.post('/:token', function(request, response) {
      // Handle the post for this route
+     // Record servertime and use this as primary key
+     // Do the math to convert values passed in to calculated values, ie totalLoadTime versus loadStart and loadEnd
+     // ^ is this a good idea?  Can timing come in parallel?
 
+    //Start [navigationStart/redirectStart]
+    //Redirect [redirectEnd]
+    //App Cache [fetchStart]
+    //DNS [domainLookupStart, domainLookupEnd]
+    //TCP [connectStart, connectEnd]
+    //Request/Response [requestStart, responseStart, responseEnd]
+    //Processing/Dom [domLoading, domInteractive, domContentLoadedEventStart, domContentLoadedEventEnd, domComplete]
+    //Load [loadEventStart, loadEventEnd]
 
+    //Total = loadEventEnd - navigationStart
+    //Redirect = redirectEnd - redirectStart
+    //APPCache = domainLookupStart - fetchStart  !! Optional
+    //DNS = domainLookupEnd - domainLookupStart
+    //TCP = connectEnd - connectStart
+    //Request = responseStart - requestStart
+    //Response = responseEnd - responseStart
+    //Processing = domComplete - domLoading
+    //load = loadEventEnd - loadEventStart
+
+    //PageName
+    //IP From which it came (also add to set for batch lookup for regions)
+    //Region (country code if possible)
+    //System time POST was received
+
+        var token = request.params.token,
+            now = Date.now();
+
+        client.incr(token + ":id", function(error, object){
+            var id = object,
+                hashKey = token + ":" + id + ":data",
+                rBody = request.body;
+
+            client.hmset(hashKey, {
+                "time" :            now,
+                "totalDuration" :   rBody.loadEventEnd - rBody.navigationStart,
+                "redirect" :        rBody.redirectEnd - rBody.redirectStart,
+                "appCache" :        rBody.domainLookupStart - rBody.fetchStart,
+                "dns" :             rBody.domainLookupEnd - rBody.domainLookupStart,
+                "tcp" :             rBody.connectEnd - rBody.connectStart,
+                "request" :         rBody.responseStart - rBody.requestStart,
+                "response" :        rBody.responseEnd - rBody.responseStart,
+                "processing" :      rBody.domComplete - rBody.domLoading,
+                "load" :            rBody.loadEventEnd - rBody.loadEventStart
+            });
+        });
         response.end();
     });
 
