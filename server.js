@@ -1,5 +1,7 @@
-(
+/*global console, require */
 
+
+(
 function main() {
     var express = require('express'),
         app = express();
@@ -7,22 +9,25 @@ function main() {
     var redis = require('redis'),
         client = redis.createClient();
 
-    app.post('/:token', function(request, response) {
-        //Put data in a temporary store
-
-        console.log(request.body);
-        console.log("Token::" + request.params.token);
+    //We want to allow any origin to send cross site posts to record data
+    app.options('/:token', function(request, response){
+        response.header("Access-Control-Allow-Origin", "*");
+        response.end('');
     });
 
+    app.post('/:token', function(request, response) {
+        //Put data in a temporary store
+        console.log(request.body);
+        console.log("Token::" + request.params.token);
+        response.header("Access-Control-Allow-Origin", "*");
+        response.end('');
+    });
+
+    //If someone just puts in the token we want to redirect them to the homepage
     app.get('/:token', function(request, response) {
-        var token = request.params.token,
-            newId = client.incr(token + ":id");
-        console.log(newId);
-        client.set(newId, "...data...");
         response.writeHead(302, {
             'Location': '/'
         });
-        client.end();
         response.end();
     });
 

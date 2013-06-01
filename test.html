@@ -5,18 +5,31 @@
 
 <body>
 	<form method="post" action="http://127.0.0.1:8888/123456">
-	    <input type="text" name="user[name]">
-	    <input type="text" name="user[email]">
 	    <input type="text" name="data" id="textInput">
 	    <input type="submit" value="Submit">
 </form>
 </body>
 
 <script>
-	document.onload.bind(function(){
-		document.getElementById("textInput").value = JSON.stringify(performance.timing);
-		console.log(performance.timing);
-	});
+	var checkReady = function() {   
+  		if ( document.readyState !== "complete" ) {
+  			setTimeout(checkReady,11);
+  		} else {
+  			if ( !!performance ) {
+				var y = "{";
+				for ( var x in performance.timing ) {
+					y += "\"" + x + "\":" + performance.timing[x] + ",";
+				}
+				y += "}";
+				document.getElementById("textInput").value = y;
+				console.log(y);
+				console.log("asdf");
+				//Send a post to the server with the y value
+  			} else return;
+  		}
+  	};
+
+	checkReady(); 
 </script>
 
 </html>
