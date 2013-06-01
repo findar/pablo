@@ -1,0 +1,22 @@
+<doctype html!>
+
+<html>
+<head></head>
+
+<body>
+	<form method="post" action="http://127.0.0.1:8888/123456">
+	    <input type="text" name="user[name]">
+	    <input type="text" name="user[email]">
+	    <input type="text" name="data" id="textInput">
+	    <input type="submit" value="Submit">
+</form>
+</body>
+
+<script>
+	document.onload.bind(function(){
+		document.getElementById("textInput").value = JSON.stringify(performance.timing);
+		console.log(performance.timing);
+	});
+</script>
+
+</html>
