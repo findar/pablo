@@ -4,32 +4,35 @@
 <head></head>
 
 <body>
-	<form method="post" action="http://127.0.0.1:8888/123456">
-	    <input type="text" name="data" id="textInput">
-	    <input type="submit" value="Submit">
+    <form method="post" action="http://127.0.0.1:8888/123456">
+        <input type="text" name="data" id="textInput">
+        <input type="submit" value="Submit">
 </form>
 </body>
 
 <script>
-	var checkReady = function() {   
-  		if ( document.readyState !== "complete" ) {
-  			setTimeout(checkReady,11);
-  		} else {
-  			if ( !!performance ) {
-				var y = "{";
-				for ( var x in performance.timing ) {
-					y += "\"" + x + "\":" + performance.timing[x] + ",";
-				}
-				y += "}";
-				document.getElementById("textInput").value = y;
-				console.log(y);
-				console.log("asdf");
-				//Send a post to the server with the y value
-  			} else return;
-  		}
-  	};
+    var url = "127.0.0.1",
+        port = "8888",
+        token = "12345";
+    var checkReady = function() {   
+        if ( document.readyState !== "complete" ) {
+            setTimeout(checkReady, 100);
+        } else {
+            if ( !!performance ) {
+                var y = {};
+                for ( var x in performance.timing ) {
+                    y[x] = performance.timing[x];
+                }
+                var xhr = new XMLHttpRequest(),
+                    uri = "http://" + url + ":" + port + "/" + token;
+                xhr.open("POST", uri);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.send(JSON.stringify(y));
+            } else return;
+        }
+    };
 
-	checkReady(); 
+    checkReady(); 
 </script>
 
 </html>
