@@ -28,10 +28,11 @@ function main() {
         app.use(express.errorHandler());
     });
 
-
     app.all('/api/feed/:token', api.crossSiteSettings);
     app.post('/api/feed/:token', api.post);
     app.get('/api/eat/:token', api.get);
+    app.get('/api/eat/:token/:startTime', api.get);
+    app.get('/api/eat/:token/:startTime/:endTime', api.get);
     app.post('*', routes.deadEnd);
     app.options('*', routes.deadEnd);//This is necessary or Firefox will 404 and fail on post
     app.get('*', routes.home);
