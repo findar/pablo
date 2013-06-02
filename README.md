@@ -1,4 +1,6 @@
 pablo
 =====
 
-A Node.js server that uses redis to store and display web analytics
+A Node.js server that uses Redis to store and display web analytics.  It also takes advantage of Jade for templating and Angular for client side.  
+
+Intended to aid in easily logging benchmarks for web sites that take advantage of it.
