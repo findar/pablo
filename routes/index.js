@@ -3,6 +3,6 @@ exports.deadEnd = function(request, response) {
 };
 
 exports.home = function(request, response) {
-	response.end("index page");
+	response.end("Index page");
 };
 
