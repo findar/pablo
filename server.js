@@ -1,75 +1,40 @@
 /*global console, require */
-//TODO:  Display a ui so user can get results
-//TODO:  Provide a ui to generate tokens based on url
-//TODO:  Provide a ui to generate the js for injection into pages
-
 
 (
 function main() {
     var express = require('express'),
-        app = express();
-
-    app.use(express.bodyParser());
+        api = require('./routes/API'),
+        routes = require('./routes'),
+        app = module.exports = express();
 
     var redis = require('redis'),
         client = redis.createClient();
 
-    app.all('/:token', function(request, response, next) {
-        response.set({
-            "Access-Control-Allow-Origin" : "*",
-            "Access-Control-Allow-Headers": "origin,content-Type,x-requested-with"
-        });
-        next();
+
+    app.configure(function(){
+        app.set('views', __dirname + '/views');
+        app.set('view engine', 'jade');
+        app.use(express.bodyParser());
+        app.use(express.methodOverride());
+        app.use(express.static(__dirname + '/public'));
+        app.use(app.router);
     });
 
-    app.post('/:token', function(request, response) {
-        var token = request.params.token,
-            now = Date.now();
-
-        client.incr(token + ":id", function(error, newId){
-            var id = newId,
-                hashKey = token + ":" + id + ":data",
-                rBody = request.body;
-            //These values are based on the chart found here: https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html#processing-model
-            client.hmset(hashKey, {
-                "time" :            now,
-                "path" :            request.path,
-                "host" :            request.host,
-                "url"  :            request.url,
-                "ip"   :            request.ip,
-                "totalDuration" :   rBody.loadEventEnd - rBody.navigationStart,
-                "redirect" :        rBody.redirectEnd - rBody.redirectStart,
-                "appCache" :        rBody.domainLookupStart - rBody.fetchStart,
-                "dns" :             rBody.domainLookupEnd - rBody.domainLookupStart,
-                "tcp" :             rBody.connectEnd - rBody.connectStart,
-                "request" :         rBody.responseStart - rBody.requestStart,
-                "response" :        rBody.responseEnd - rBody.responseStart,
-                "processing" :      rBody.domComplete - rBody.domLoading,
-                "load" :            rBody.loadEventEnd - rBody.loadEventStart
-            });
-
-            client.zadd(token + ":sortedId", now, id);
-        });
-        response.end();
+    app.configure('development', function(){
+        app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     });
 
-    //This is necessary or Firefox will 404 and fail
-    app.options('/:token', function(request, response){
-        response.end();
+    app.configure('production', function(){
+        app.use(express.errorHandler());
     });
 
-    //If someone just puts in the token we want to redirect them to the homepage
-    app.get('/:token', function(request, response) {
-        response.writeHead(302, {
-            'Location': '/'
-        });
-        response.end();
-    });
 
-    app.get('/', function(request, response) {
-        response.send('Simple node.js app');
-        response.end();
-    });
+    app.all('/api/feed/:token', api.crossSiteSettings);
+    app.post('/api/feed/:token', api.post);
+    app.get('/api/eat/:token', api.get);
+    app.post('*', routes.deadEnd);
+    app.options('*', routes.deadEnd);//This is necessary or Firefox will 404 and fail on post
+    app.get('*', routes.home);
 
     app.listen(8888);
     console.log("Listening....");
