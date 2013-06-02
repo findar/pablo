@@ -30,6 +30,7 @@ function main() {
             var id = newId,
                 hashKey = token + ":" + id + ":data",
                 rBody = request.body;
+            //These values are based on the chart found here: https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html#processing-model
             client.hmset(hashKey, {
                 "time" :            now,
                 "path" :            request.path,
@@ -65,7 +66,7 @@ function main() {
         response.end();
     });
 
-    app.get('/', function(request, response, next) {
+    app.get('/', function(request, response) {
         response.send('Simple node.js app');
         response.end();
     });
@@ -75,6 +76,3 @@ function main() {
 }
 
 )();
-
-
-//Have a batch function that takes the in memory store and then dump that into a MySQL db
