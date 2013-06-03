@@ -3,5 +3,5 @@ exports.deadEnd = function(request, response) {
 };
 
 exports.home = function(request, response) {
-	response.end("Index page");
+	response.render('index');
 };

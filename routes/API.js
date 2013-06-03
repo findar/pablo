@@ -1,6 +1,6 @@
 
 var redis = require("redis"),
-client = redis.createClient();
+    client = redis.createClient();
 
 exports.crossSiteSettings = function(request, response, next) {
     response.set({
