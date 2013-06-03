@@ -8,5 +8,5 @@ Intended to aid in easily logging benchmarks for web sites that take advantage o
 TODO
 ====
 
--Create frontend to generate tokens
--Create frontend to display results
+- Create frontend to generate tokens
+- Create frontend to display results
