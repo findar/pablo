@@ -42,17 +42,14 @@ exports.post = function(request, response) {
 };
 
 exports.get = function(request, response) {
-    var token = request.params.token,
+    var token =     request.params.token,
         startTime = request.params.startTime || 0,
-        endTime = request.params.endTime || Date.now(); //You shouldn't have data in the future
+        endTime =   request.params.endTime || Date.now(); //You shouldn't have data in the future.  Are timezones an issue?
 
     var dataSet = "" + token + ":sortedId";
 
     client.zrangebyscore(dataSet, startTime, endTime, function(error, results) {
-        //Now that we have a list of data, we need to get all associated sets 
-        //  and compile them into a large json object to return.  This is basically
-        var returnArray = [],
-            multi = client.multi();
+        var multi = client.multi();
 
         for (var x = 0; x < results.length; x++){
             var queryString = token + ":" + results[x] + ":data";
