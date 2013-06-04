@@ -14,7 +14,32 @@ block body
                     label(for='endDate') End Date
                     input(type=text, ng-model='server.endDate', default='mm/dd/yy', name='endDate')
         a(href='#', ng-click='fetch(server)') Get Data
-    div(ng-view)
+
+        div
+
+    .key
+        .parent
+            .redirect redirect
+            .appCache appCache
+            .dns dns
+            .tcp tcp
+            .request request
+            .response response
+            .processing processing
+            .load load
+            div Total Time
+
+    .resultsContainer
+        .resultBox(ng-repeat='result in results', style='width: {{ result.totalDuration*2 }}px')
+            .parent(title='{{ result.totalDuration }}ms', )
+                .redirect(title='{{ result.redirect }}ms', style='width: {{ (result.redirect / result.totalDuration) * 100 }}%') 
+                .appCache(title='{{ result.appCache }}ms', style='width: {{ (result.appCache / result.totalDuration) * 100 }}%')
+                .dns(title='{{ result.dns }}ms', style='width: {{ (result.dns / result.totalDuration) * 100 }}%')
+                .tcp(title='{{ result.tcp }}ms', style='width: {{ (result.tcp / result.totalDuration) * 100 }}%')
+                .request(title='{{ result.request }}ms', style='width: {{ (result.request / result.totalDuration) * 100 }}%')
+                .response(title='{{ result.response }}ms', style='width: {{  (result.response / result.totalDuration) * 100 }}%')
+                .processing(title='{{ result.processing }}ms', style='width: {{ (result.processing / result.totalDuration) * 100 }}%')
+                .load(title='{{ result.load }}', style='width: {{ (result.load / result.totalDuration) * 100 }}%')
 
     script(src='/js/angular.js')
     script(src='/js/app.js')

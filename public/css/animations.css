@@ -1,0 +1,28 @@
+@keyframes bezierBarGrowth
+{
+0%   {width: 0%;}
+11%  {width: 4%;}
+18%  {width: 6%;}
+25%  {width: 10%;}
+75%  {width: 90%;}
+82%  {width: 94%;}
+89%  {width: 96%;}
+100% {width: 100%;}
+}
+
+@-webkit-keyframes bezierBarGrowth /* Safari and Chrome */
+{
+0%   {width: 0%;}
+10%  {width: 2%;}
+20%  {width: 6%;}
+25%  {width: 14%;}
+75%  {width: 88%;}
+82%  {width: 94%;}
+89%  {width: 98%;}
+100% {width: 100%;}
+} 
+
+.resultBox .parent {
+	animation: bezierBarGrowth 1.2s;
+	-webkit-animation: bezierBarGrowth 1.2s;
+}

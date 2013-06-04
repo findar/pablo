@@ -6,8 +6,7 @@ angular.module('pablo').controller('fetch', function($scope, $http, $log){
             var url = '/api/eat/' + server.token;
             $http.get(url).
                 success(function(data) {
-                    console.log(data);
-                    //Lets do something with this
+                    $scope.results = data;
                 });
         }
     };

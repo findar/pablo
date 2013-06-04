@@ -1,3 +1,76 @@
 h2 {
 	font: 18px/1.4 Helvetica,arial,freesans,clean,sans-serif;
 }
+
+h5 {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+.resultsContainer .parent {
+	margin: 0;
+	display: block;
+}
+
+.key .parent {
+	height: 20px;
+	line-height: 20px;
+	width: 50%;
+}
+
+.key .parent > div {
+	height: 20px;
+}
+	
+.parent > div {
+	display: inline-block;
+	height: 5px;
+	vertical-align: middle;
+    margin: 0 auto;
+}
+
+.parent {
+    background-color: #34495e;
+    height: 5px;
+    padding: 1px;
+    line-height: 5px;
+}
+
+.key .parent > div {
+	padding: 0 5px;
+	min-width: 25px;
+
+}
+
+.redirect {
+	background-color: #9b59b6;
+}
+
+.appCache {
+	background-color: #3498db;
+}
+
+.dns {
+	background-color: #2ecc71;
+}
+
+.tcp {
+	background-color: #1abc9c;
+}
+
+.request {
+	background-color: #f1c40f;
+}
+
+.response {
+	background-color: #e67e22;
+}
+
+.processing {
+	background-color: #95a5a6;
+}
+
+.load {
+	background-color: #ecf0f1;
+}

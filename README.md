@@ -9,4 +9,3 @@ TODO
 ====
 
 - Create frontend to generate tokens
-- Create frontend to display results
