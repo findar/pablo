@@ -61,6 +61,7 @@ input {
     padding: 8px 0 9px 10px;
     text-indent: 1px;
     background-color: #FFFFFF;
+    outline: 0;
     transition: border 0.3s linear 0s, box-shadow 0.3s linear 0s;
 }
 
@@ -82,6 +83,8 @@ input:focus {
 
 .resultsContainer {
 	margin: 10px 0;
+	background-repeat: repeat-y;
+	background-image: url('/img/gradiant.png');
 }
 .resultsContainer .parent {
 	margin: 0;
@@ -117,34 +120,18 @@ input:focus {
 	min-width: 25px;
 }
 
-.redirect {
-	background-color: #9b59b6;
-}
+.redirect { background-color: #9b59b6; }
 
-.appCache {
-	background-color: #3498db;
-}
+.appCache { background-color: #3498db; }
 
-.dns {
-	background-color: #2ecc71;
-}
+.dns { background-color: #2ecc71; }
 
-.tcp {
-	background-color: #1abc9c;
-}
+.tcp { background-color: #1abc9c; }
 
-.request {
-	background-color: #f1c40f;
-}
+.request { background-color: #f1c40f; }
 
-.response {
-	background-color: #e67e22;
-}
+.response { background-color: #e67e22; }
 
-.processing {
-	background-color: #95a5a6;
-}
+.processing { background-color: #95a5a6; }
 
-.load {
-	background-color: #ecf0f1;
-}
+.load { background-color: #ecf0f1; }
