@@ -36,9 +36,11 @@ function main() {
     app.post('*', routes.deadEnd);
     app.options('*', routes.deadEnd);//This is necessary or Firefox will 404 and fail on post
     app.get('*', routes.home);
-
-    app.listen(8888);
-    console.log("Listening....");
+    
+    var port = process.env.PORT || 8888;
+    app.listen(port, function() {
+        console.log("Listening on port: ", port);
+    });
 }
 
 )();
