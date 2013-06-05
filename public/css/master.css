@@ -8,6 +8,72 @@ h5 {
 	margin: 0;
 }
 
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a:hover, a:focus {
+background-color: #5dade2;
+}
+
+a {
+	padding-bottom: 12px;
+    padding-top: 13px;
+	background: none repeat scroll 0 0 #3498DB;
+	border: medium none;
+    box-shadow: none;
+    color: white;
+    text-decoration: none;
+    text-shadow: none;
+    transition: all 0.25s ease 0s;
+    -moz-box-sizing: border-box;
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    width: 120px;
+	font: 16.5px/1.231 "Lato",sans-serif;
+	border-radius: 6px;
+	text-align: center;
+	margin-left: 172px;
+}
+
+label {
+	width: 150px;
+	text-align: right;
+	display: inline-block;
+	margin: 0 5px 10px;
+	color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
+input {
+	background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+input:focus {
+	border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+
 .resultsContainer .parent {
 	margin: 0;
 	display: block;
@@ -40,7 +106,6 @@ h5 {
 .key .parent > div {
 	padding: 0 5px;
 	min-width: 25px;
-
 }
 
 .redirect {

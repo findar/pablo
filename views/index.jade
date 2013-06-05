@@ -6,17 +6,14 @@ block body
             ul
                 li
                     label(for='token') Server Token
-                    input(type=text, ng-model='server.token', name='token')
+                    input#token(type=text, ng-model='server.token', name='token')
                 li
                     label(for='startDate') Start Date
-                    input(type=text, ng-model='server.startDate', name='startDate')
+                    input#startDate(type=text, ng-model='server.startDate', name='startDate')
                 li
                     label(for='endDate') End Date
-                    input(type=text, ng-model='server.endDate', default='mm/dd/yy', name='endDate')
-        a(href='#', ng-click='fetch(server)') Get Data
-
-        div
-
+                    input#endDate(type=text, ng-model='server.endDate', default='mm/dd/yy', name='endDate')
+            a(href='#', ng-click='fetch(server)') Get Data
     .key
         .parent
             .redirect redirect
