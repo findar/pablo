@@ -35,7 +35,6 @@ function main() {
     app.get('/api/eat/:token/:startTime/:endTime', api.get);
     app.post('*', routes.deadEnd);
     app.options('*', routes.deadEnd);//This is necessary or Firefox will 404 and fail on post
-    //app.get('/public/*', routes.public);
     app.get('*', routes.home);
 
     var port = process.env.PORT || 8888;
