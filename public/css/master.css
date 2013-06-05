@@ -1,8 +1,7 @@
-h2 {
-	font: 18px/1.4 Helvetica,arial,freesans,clean,sans-serif;
-}
 
 h5 {
+	color: #34495E;
+    font: 14px/1.231 "Lato",sans-serif;
 	display: inline-block;
 	padding: 0;
 	margin: 0;
@@ -53,27 +52,37 @@ label {
 }
 
 input {
-	background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-    border-radius: 4px;
-    color: #555555;
-    display: inline-block;
+    border: 2px solid #DCE4EC;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #34495E;
+    font-family: "Lato",sans-serif;
     font-size: 14px;
-    height: 20px;
-    line-height: 20px;
-    margin-bottom: 10px;
-    padding: 4px 6px;
-    vertical-align: middle;
+    padding: 8px 0 9px 10px;
+    text-indent: 1px;
+    background-color: #FFFFFF;
+    transition: border 0.3s linear 0s, box-shadow 0.3s linear 0s;
 }
 
 input:focus {
-	border-color: rgba(82, 168, 236, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-    outline: 0 none;
+	border-color: #1abc9c;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
+.inputContainer {
+	margin: 10px 0;
+	padding: 5px 0;
+}
+
+.resultBox {
+	width: 0;
+}
+
+.resultsContainer {
+	margin: 10px 0;
+}
 .resultsContainer .parent {
 	margin: 0;
 	display: block;

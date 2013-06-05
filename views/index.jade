@@ -2,7 +2,8 @@ extends layout
 
 block body
     div
-        h2 pablo
+        h5 pablo - This is still very much in a beta state.  Start and End date should be unix time stamps (ms since epoch).  This will change to a date picker in the future.
+        .inputContainer
             ul
                 li
                     label(for='token') Server Token
@@ -27,7 +28,7 @@ block body
             div Total Time
 
     .resultsContainer
-        .resultBox(ng-repeat='result in results', style='width: {{ result.totalDuration }}px')
+        .resultBox(ng-repeat='result in results', ng-show='result', style='width: {{ result.totalDuration }}px')
             .parent(title='{{ result.totalDuration }}ms', )
                 .redirect(title='{{ result.redirect }}ms', style='width: {{ (result.redirect / result.totalDuration) * 100 }}%') 
                 .appCache(title='{{ result.appCache }}ms', style='width: {{ (result.appCache / result.totalDuration) * 100 }}%')
